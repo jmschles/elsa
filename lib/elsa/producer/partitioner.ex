@@ -25,7 +25,7 @@ defmodule Elsa.Producer.Partitioner do
   """
   @spec partition(:md5, integer(), term()) :: integer()
   def partition(:md5, partition_count, key) do
-    :crypto.hash(:md5, key)
+    :erlang.md5(key)
     |> :binary.bin_to_list()
     |> Enum.sum()
     |> rem(partition_count)
